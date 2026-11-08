@@ -247,7 +247,7 @@ export const CheckoutModal: React.FC<CheckoutModalProps> = ({
                   ? (lang === 'en' ? 'Gym Name in Mila (e.g. Gym Pro, Olympic Complex):' : 'اسم القاعة الرياضية في ميلة:')
                   : customerInfo.orderType === 'delivery'
                   ? (lang === 'en' ? 'Delivery Address in Mila (Neighborhood / Street):' : 'عنوان التوصيل في ميلة (الحي / الشارع):')
-                  : (lang === 'en' ? 'Pickup Time Preference (at Healthy_Brunchy Sol+):' : 'وقت الاستلام المفضل:')}
+                  : (lang === 'en' ? 'Pickup at Kitchen (Cité Ben Aazouz - El Kamounia, Mila):' : 'استلام من المطعم (ميلة - حي بن عزوز، الكمونية):')}
               </label>
               <div className="relative">
                 <MapPin className="w-4 h-4 text-white/40 absolute left-3 top-3" />
@@ -258,7 +258,7 @@ export const CheckoutModal: React.FC<CheckoutModalProps> = ({
                   placeholder={
                     customerInfo.orderType === 'gym_drop'
                       ? 'e.g. Gym Pro Mila, Olympic Pool Area, Salle Omnisport'
-                      : 'e.g. Centre Ville Mila, Cité 500 Logements, Downtown'
+                      : 'e.g. Cité Ben Aazouz (El Kamounia), Centre Ville, Downtown'
                   }
                   className="w-full pl-9 pr-3 py-2 text-xs bg-[#0c1912] border border-[#a3c9a8]/30 rounded-lg text-white focus:outline-none focus:border-[#a3c9a8]"
                 />

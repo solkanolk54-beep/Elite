@@ -1,6 +1,6 @@
 import React from 'react';
-import { Search, RotateCcw, Filter, Dumbbell, Flame, Sparkles } from 'lucide-react';
-import { CategoryId } from '../types/menu';
+import { Search, RotateCcw, Dumbbell, Flame, Sparkles, Target, Briefcase } from 'lucide-react';
+import { CategoryId, DietGoal } from '../types/menu';
 import { CATEGORIES } from '../data/menuData';
 
 interface MacroFilterToolbarProps {
@@ -12,6 +12,9 @@ interface MacroFilterToolbarProps {
   onMinProteinChange: (val: number) => void;
   maxCalories: number;
   onMaxCaloriesChange: (val: number) => void;
+  currentGoal: DietGoal;
+  onSelectGoal: (goal: DietGoal) => void;
+  onOpenMacroEstimator?: () => void;
   onResetFilters: () => void;
   totalFilteredCount: number;
   lang: 'en' | 'ar';
@@ -26,15 +29,63 @@ export const MacroFilterToolbar: React.FC<MacroFilterToolbarProps> = ({
   onMinProteinChange,
   maxCalories,
   onMaxCaloriesChange,
+  currentGoal,
+  onSelectGoal,
+  onOpenMacroEstimator,
   onResetFilters,
   totalFilteredCount,
   lang,
 }) => {
-  const isFilterActive = searchQuery !== '' || minProtein > 0 || maxCalories < 800 || selectedCategory !== 'all';
+  const isFilterActive = searchQuery !== '' || minProtein > 0 || maxCalories < 800 || selectedCategory !== 'all' || currentGoal !== 'all';
 
   return (
-    <div className="bg-[#102319] border border-[#a3c9a8]/15 rounded-2xl p-4 sm:p-5 mb-8 shadow-lg">
+    <div className="bg-[#102319] border border-[#a3c9a8]/20 rounded-2xl p-4 sm:p-5 mb-8 shadow-xl">
       
+      {/* Fitness Goal Selectors Row */}
+      <div className="mb-4 pb-4 border-b border-[#a3c9a8]/15">
+        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 mb-2.5">
+          <span className="text-xs font-bold text-[#88c999] uppercase tracking-wider flex items-center gap-1.5">
+            <Target className="w-4 h-4 text-[#d4af37]" />
+            <span>{lang === 'en' ? 'Quick Fitness Goal Filter:' : 'تصفية سريعة حسب الهدف الرياضي:'}</span>
+          </span>
+
+          {onOpenMacroEstimator && (
+            <button
+              onClick={onOpenMacroEstimator}
+              className="inline-flex items-center gap-1.5 text-xs font-bold text-[#d4af37] hover:text-amber-300 transition-colors cursor-pointer"
+            >
+              <Sparkles className="w-3.5 h-3.5" />
+              <span>{lang === 'en' ? 'Open Macro Estimator Calculator' : 'افتح حاسبة الماكروز الشخصية'}</span>
+            </button>
+          )}
+        </div>
+
+        <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
+          {[
+            { id: 'all', icon: '🌟', labelEn: 'All Meals', labelAr: 'جميع الوجبات' },
+            { id: 'bulking', icon: '🏋️', labelEn: 'Bulking (ضخامة)', labelAr: 'ضخامة عضلية' },
+            { id: 'cutting', icon: '✂️', labelEn: 'Cutting (تنشيف)', labelAr: 'تنشيف وحرق دهون' },
+            { id: 'employee', icon: '💼', labelEn: 'Clean Employee Meals', labelAr: 'طاقة الموظفين' },
+          ].map((goal) => {
+            const active = currentGoal === goal.id;
+            return (
+              <button
+                key={goal.id}
+                onClick={() => onSelectGoal(goal.id as DietGoal)}
+                className={`py-2 px-3 rounded-xl border text-xs font-semibold flex items-center justify-center gap-2 transition-all cursor-pointer ${
+                  active
+                    ? 'bg-[#1b3b2b] text-white border-[#88c999] ring-1 ring-[#88c999] shadow-sm'
+                    : 'bg-[#0a1810] text-white/70 border-white/10 hover:bg-[#152e20] hover:text-white'
+                }`}
+              >
+                <span>{goal.icon}</span>
+                <span className="truncate">{lang === 'en' ? goal.labelEn : goal.labelAr}</span>
+              </button>
+            );
+          })}
+        </div>
+      </div>
+
       {/* Top Row: Search and Quick Stats */}
       <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3 mb-4">
         
@@ -50,7 +101,7 @@ export const MacroFilterToolbar: React.FC<MacroFilterToolbarProps> = ({
                 ? 'Search meal, cut, or protein (e.g. fillet, fahita, steak, pesto)...'
                 : 'ابحث عن وجبة، صوص أو بروتين (فيليه، ستيك، بيستو، كباب)...'
             }
-            className="w-full pl-10 pr-4 py-2.5 text-xs sm:text-sm bg-[#0c1912] border border-[#a3c9a8]/25 rounded-xl text-white placeholder-white/40 focus:outline-none focus:border-[#a3c9a8] transition-colors"
+            className="w-full pl-10 pr-4 py-2.5 text-xs sm:text-sm bg-[#0c1912] border border-[#a3c9a8]/25 rounded-xl text-white placeholder-white/40 focus:outline-none focus:border-[#88c999] transition-colors"
           />
           {searchQuery && (
             <button
@@ -64,7 +115,7 @@ export const MacroFilterToolbar: React.FC<MacroFilterToolbarProps> = ({
 
         {/* Filter Indicator & Reset */}
         <div className="flex items-center justify-between sm:justify-end gap-3 shrink-0">
-          <span className="text-xs text-[#a3c9a8] font-mono tabular-nums">
+          <span className="text-xs text-[#88c999] font-mono tabular-nums">
             {totalFilteredCount} {lang === 'en' ? 'items found' : 'وجبة مطابقة'}
           </span>
           {isFilterActive && (
@@ -80,13 +131,13 @@ export const MacroFilterToolbar: React.FC<MacroFilterToolbarProps> = ({
 
       </div>
 
-      {/* Category Segmented Tabs (Functional Buttons §1.A) */}
+      {/* Category Segmented Tabs */}
       <div className="flex items-center gap-1.5 overflow-x-auto pb-2 scrollbar-none border-b border-[#a3c9a8]/10 mb-4">
         <button
           onClick={() => onSelectCategory('all')}
           className={`px-3.5 py-2 text-xs font-bold rounded-lg transition-all whitespace-nowrap shrink-0 cursor-pointer ${
             selectedCategory === 'all'
-              ? 'bg-[#1b3b2b] text-white border border-[#a3c9a8]/60 shadow-sm'
+              ? 'bg-[#1b3b2b] text-white border border-[#88c999]/60 shadow-sm'
               : 'text-white/70 hover:text-white hover:bg-[#183325]'
           }`}
         >
@@ -101,12 +152,12 @@ export const MacroFilterToolbar: React.FC<MacroFilterToolbarProps> = ({
               onClick={() => onSelectCategory(cat.id)}
               className={`px-3.5 py-2 text-xs font-bold rounded-lg transition-all whitespace-nowrap shrink-0 cursor-pointer ${
                 active
-                  ? 'bg-[#1b3b2b] text-white border border-[#a3c9a8]/60 shadow-sm'
+                  ? 'bg-[#1b3b2b] text-white border border-[#88c999]/60 shadow-sm'
                   : 'text-white/70 hover:text-white hover:bg-[#183325]'
               }`}
             >
               <span>{lang === 'en' ? cat.nameEn : cat.nameAr}</span>
-              <span className="text-[10px] text-[#a3c9a8] ml-1 font-mono">({cat.itemCount})</span>
+              <span className="text-[10px] text-[#88c999] ml-1 font-mono">({cat.itemCount})</span>
             </button>
           );
         })}
@@ -119,10 +170,10 @@ export const MacroFilterToolbar: React.FC<MacroFilterToolbarProps> = ({
         <div className="bg-[#0c1912]/60 p-3 rounded-xl border border-[#a3c9a8]/10">
           <div className="flex items-center justify-between text-xs mb-1.5">
             <span className="text-white/80 font-semibold flex items-center gap-1.5">
-              <Dumbbell className="w-3.5 h-3.5 text-[#a3c9a8]" />
+              <Dumbbell className="w-3.5 h-3.5 text-[#88c999]" />
               <span>{lang === 'en' ? 'Minimum Bioavailable Protein:' : 'الحد الأدنى للبروتين الصافي:'}</span>
             </span>
-            <span className="font-mono font-bold text-[#a3c9a8] tabular-nums">
+            <span className="font-mono font-bold text-[#88c999] tabular-nums">
               {minProtein > 0 ? `${minProtein}g+` : 'Any'}
             </span>
           </div>
@@ -133,7 +184,7 @@ export const MacroFilterToolbar: React.FC<MacroFilterToolbarProps> = ({
             step={5}
             value={minProtein}
             onChange={(e) => onMinProteinChange(Number(e.target.value))}
-            className="w-full accent-[#a3c9a8] h-1.5 bg-[#183325] rounded-lg cursor-pointer"
+            className="w-full accent-[#88c999] h-1.5 bg-[#183325] rounded-lg cursor-pointer"
           />
           <div className="flex justify-between text-[10px] text-white/40 font-mono mt-1">
             <span>0g</span>
@@ -166,7 +217,7 @@ export const MacroFilterToolbar: React.FC<MacroFilterToolbarProps> = ({
           <div className="flex justify-between text-[10px] text-white/40 font-mono mt-1">
             <span>200 kcal</span>
             <span>350 kcal (Cutting)</span>
-            <span>500 kcal</span>
+            <span>500 kcal (Balanced)</span>
             <span>800 kcal (Bulking)</span>
           </div>
         </div>

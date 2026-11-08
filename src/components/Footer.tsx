@@ -49,7 +49,10 @@ export const Footer: React.FC<FooterProps> = ({
               Healthy_Brunchy Sol+ Headquarters
             </p>
             <p className="text-xs text-white/60 leading-relaxed">
-              Mila Centre Ville, Wilaya de Mila, Algeria (43000)
+              Cité Ben Aazouz (El Kamounia), Wilaya de Mila, Algeria (43000)
+            </p>
+            <p className="text-xs text-white/50">
+              {lang === 'en' ? 'Located at Cité Ben Aazouz (El Kamounia)' : 'الموقع: ميلة، حي بن عزوز (الكمونية)'}
             </p>
             <p className="text-xs text-[#a3c9a8] mt-1">
               {lang === 'en' ? 'Serving Mila, Grarem Goua, & surrounding athletic gyms' : 'نخدم ميلة، القرارم قوقة والقاعات الرياضية المجاورة'}

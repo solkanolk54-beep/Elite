@@ -94,4 +94,34 @@ export interface OrderCustomerInfo {
   notes?: string;
 }
 
-export type DietGoal = 'all' | 'high_protein' | 'low_carb' | 'clean_bulk' | 'lean_cut';
+export type DietGoal = 
+  | 'all' 
+  | 'bulking' 
+  | 'cutting' 
+  | 'employee' 
+  | 'clean_bulk' 
+  | 'lean_cut' 
+  | 'high_protein' 
+  | 'low_carb';
+
+export interface PersonalMacroProfile {
+  gender: 'male' | 'female';
+  age: number;
+  weightKg: number;
+  heightCm: number;
+  activityLevel: 'sedentary' | 'light' | 'moderate' | 'athlete';
+  fitnessGoal: 'cutting' | 'employee' | 'bulking';
+}
+
+export interface PersonalMacroResult {
+  bmr: number;
+  tdee: number;
+  targetCalories: number;
+  targetProtein: number; // in grams
+  targetCarbs: number;   // in grams
+  targetFats: number;    // in grams
+  waterLiters: number;
+  descriptionEn: string;
+  descriptionAr: string;
+}
+
