@@ -1,0 +1,6 @@
+{
+  "name": "Elite Healthy Food - Macro Nutrition Platform",
+  "description": "Premium macro-calculated nutrition platform for athletes, bodybuilders, and health-conscious diners in Mila, Algeria by Healthy_Brunchy Sol+.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
