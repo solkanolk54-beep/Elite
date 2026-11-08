@@ -82,10 +82,10 @@ export const CheckoutModal: React.FC<CheckoutModalProps> = ({
   };
 
   const handleWhatsAppSend = () => {
-    // Official Algerian phone number format for Healthy_Brunchy Sol+
+    // Official Algerian phone number format for Healthy_Brunchy Sol+ (0558 32 78 13)
     const orderText = encodeURIComponent(generateOrderText());
     // Direct WhatsApp web / mobile intent
-    window.open(`https://wa.me/213555000000?text=${orderText}`, '_blank');
+    window.open(`https://wa.me/213558327813?text=${orderText}`, '_blank');
     setOrderSubmitted(true);
   };
 
@@ -331,7 +331,7 @@ export const CheckoutModal: React.FC<CheckoutModalProps> = ({
             className="w-full sm:w-auto px-6 py-3.5 bg-[#25D366] hover:bg-[#20ba59] text-white font-heading font-black text-xs sm:text-sm uppercase tracking-wider rounded-xl shadow-lg transition-all flex items-center justify-center gap-2 cursor-pointer"
           >
             <MessageCircle className="w-5 h-5 fill-current" />
-            <span>{lang === 'en' ? 'Send Order via WhatsApp (+213)' : 'إرسال الطلب عبر واتساب'}</span>
+            <span>{lang === 'en' ? 'Send Order via WhatsApp (0558 32 78 13)' : 'إرسال الطلب عبر واتساب (0558 32 78 13)'}</span>
           </button>
         </div>
 

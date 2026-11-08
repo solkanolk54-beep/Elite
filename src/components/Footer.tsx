@@ -108,10 +108,24 @@ export const Footer: React.FC<FooterProps> = ({
                   {lang === 'en' ? '200g Carb Customizer' : 'محرك الكاربوهيدرات 200غ'}
                 </a>
               </li>
+              <li className="pt-1">
+                <a 
+                  href="https://wa.me/213558327813" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-1.5 text-emerald-400 hover:text-emerald-300 font-mono text-xs font-bold transition-colors"
+                >
+                  <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+                  <span>WhatsApp: 0558 32 78 13</span>
+                </a>
+              </li>
               <li>
-                <span className="text-white/40">
-                  {lang === 'en' ? 'WhatsApp Direct Orders: (+213) Mila' : 'طلبات واتساب المباشرة: ميلة'}
-                </span>
+                <a 
+                  href="tel:0558327813" 
+                  className="flex items-center gap-1.5 text-amber-300/80 hover:text-amber-300 font-mono text-xs transition-colors"
+                >
+                  <span>{lang === 'en' ? 'Direct Line:' : 'الهاتف:'} 0558 32 78 13</span>
+                </a>
               </li>
             </ul>
           </div>

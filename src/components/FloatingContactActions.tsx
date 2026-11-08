@@ -12,8 +12,8 @@ export const FloatingContactActions: React.FC<FloatingContactActionsProps> = ({
 }) => {
   const [isOpen, setIsOpen] = useState(false);
 
-  const officialPhone = '0555000000';
-  const whatsappNumber = '213555000000';
+  const officialPhone = '0558327813';
+  const whatsappNumber = '213558327813';
   const defaultWhatsAppMsg = encodeURIComponent(
     lang === 'en'
       ? 'Salam Elite Healthy Food by Healthy_Brunchy Sol+ (Mila). I would like to inquire about healthy meals / place an order.'
@@ -44,7 +44,10 @@ export const FloatingContactActions: React.FC<FloatingContactActionsProps> = ({
             className="flex items-center gap-2.5 px-3.5 py-2.5 rounded-xl bg-[#13281c] text-white border border-amber-500/40 shadow-xl hover:bg-[#1b3b2b] transition-all text-xs font-bold group"
           >
             <Phone className="w-4 h-4 text-amber-400 group-hover:scale-110 transition-transform" />
-            <span>{lang === 'en' ? 'Call Kitchen (Mila)' : 'اتصال مباشر بالمطعم'}</span>
+            <div className="flex flex-col items-start leading-tight">
+              <span>{lang === 'en' ? 'Call Kitchen' : 'اتصال مباشر'}</span>
+              <span className="font-mono text-[10px] text-amber-300">0558 32 78 13</span>
+            </div>
           </a>
 
           {/* Direct WhatsApp Ordering */}
@@ -55,7 +58,10 @@ export const FloatingContactActions: React.FC<FloatingContactActionsProps> = ({
             className="flex items-center gap-2.5 px-3.5 py-2.5 rounded-xl bg-[#165b33] text-white border border-emerald-400/50 shadow-xl hover:bg-[#1a6e3e] transition-all text-xs font-bold group"
           >
             <MessageCircle className="w-4 h-4 text-emerald-300 group-hover:scale-110 transition-transform" />
-            <span>{lang === 'en' ? 'Order on WhatsApp' : 'طلب سريع عبر واتساب'}</span>
+            <div className="flex flex-col items-start leading-tight">
+              <span>{lang === 'en' ? 'WhatsApp Order' : 'واتساب مباشر'}</span>
+              <span className="font-mono text-[10px] text-emerald-200">0558 32 78 13</span>
+            </div>
           </a>
 
           {/* Location details card */}

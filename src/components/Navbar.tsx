@@ -1,5 +1,5 @@
 import React from 'react';
-import { ShoppingBag, BookOpen, MapPin, Dumbbell, Target } from 'lucide-react';
+import { ShoppingBag, BookOpen, MapPin, Dumbbell, Target, MessageCircle } from 'lucide-react';
 import { CartItem } from '../types/menu';
 
 interface NavbarProps {
@@ -118,6 +118,18 @@ export const Navbar: React.FC<NavbarProps> = ({
           >
             {lang === 'en' ? 'عربي' : 'EN'}
           </button>
+
+          {/* Quick WhatsApp Link */}
+          <a
+            href="https://wa.me/213558327813"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hidden sm:inline-flex items-center gap-1.5 px-2.5 py-1 text-xs font-semibold rounded-md bg-[#165b33] hover:bg-[#1a6e3e] text-white border border-emerald-400/40 transition-colors whitespace-nowrap shrink-0 cursor-pointer"
+            title="WhatsApp: 0558 32 78 13"
+          >
+            <MessageCircle className="w-3.5 h-3.5 text-emerald-300" />
+            <span className="font-mono text-emerald-100">0558 32 78 13</span>
+          </a>
 
           {/* Athlete Tray CTA Button */}
           <button

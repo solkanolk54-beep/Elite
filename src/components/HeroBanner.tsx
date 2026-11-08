@@ -34,7 +34,7 @@ export const HeroBanner: React.FC<HeroBannerProps> = ({
   onOpenFoodCost,
   onOpenMacroEstimator,
 }) => {
-  const whatsappNumber = '213555000000';
+  const whatsappNumber = '213558327813';
   const whatsappText = encodeURIComponent(
     lang === 'en'
       ? 'Salam Elite Healthy Food (Mila). I would like to order macro-calculated meals.'
@@ -142,11 +142,12 @@ export const HeroBanner: React.FC<HeroBannerProps> = ({
 
               {/* Direct Call */}
               <a
-                href="tel:0555000000"
+                href="tel:0558327813"
                 className="inline-flex items-center gap-1.5 px-3 py-2.5 text-xs sm:text-sm font-medium text-white/90 bg-[#13271c] hover:bg-[#1a3526] border border-white/10 rounded-lg transition-colors cursor-pointer"
+                title="Call 0558327813"
               >
                 <Phone className="w-3.5 h-3.5 text-amber-400" />
-                <span className="hidden sm:inline">{lang === 'en' ? 'Call' : 'اتصال'}</span>
+                <span className="font-mono text-xs text-amber-300">0558 32 78 13</span>
               </a>
 
               {/* Costing Engine */}
