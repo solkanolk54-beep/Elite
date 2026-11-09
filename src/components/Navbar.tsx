@@ -7,7 +7,6 @@ interface NavbarProps {
   onOpenCart: () => void;
   onOpenHowToRead: () => void;
   onOpenSheetViewer: () => void;
-  onOpenFoodCost: () => void;
   onOpenMacroEstimator: () => void;
   lang: 'en' | 'ar';
   onToggleLang: () => void;
@@ -20,7 +19,6 @@ export const Navbar: React.FC<NavbarProps> = ({
   onOpenCart,
   onOpenHowToRead,
   onOpenSheetViewer,
-  onOpenFoodCost,
   onOpenMacroEstimator,
   lang,
   onToggleLang,
@@ -64,14 +62,6 @@ export const Navbar: React.FC<NavbarProps> = ({
           >
             <Target className="w-4 h-4 text-[#d4af37]" />
             <span>{lang === 'en' ? 'Macro Calculator' : 'حاسبة الماكروز'}</span>
-          </button>
-
-          <button 
-            onClick={onOpenFoodCost} 
-            className="hover:text-white transition-colors whitespace-nowrap shrink-0 flex items-center gap-1.5 cursor-pointer text-left font-semibold text-[#88c999]"
-          >
-            <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-            <span>{lang === 'en' ? 'Cost & Pricing' : 'حاسبة التكاليف'}</span>
           </button>
 
           <button 

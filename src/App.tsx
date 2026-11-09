@@ -20,7 +20,6 @@ import { CheckoutModal } from './components/CheckoutModal';
 import { MacroFilterToolbar } from './components/MacroFilterToolbar';
 import { CarbSectionShowcase } from './components/CarbSectionShowcase';
 import { Footer } from './components/Footer';
-import { FoodCostModal } from './components/FoodCostModal';
 import { PersonalMacroEstimatorModal } from './components/PersonalMacroEstimatorModal';
 import { FloatingContactActions } from './components/FloatingContactActions';
 import { MENU_ITEMS, CATEGORIES } from './data/menuData';
@@ -39,7 +38,6 @@ export default function App() {
   const [isCheckoutOpen, setIsCheckoutOpen] = useState<boolean>(false);
   const [isHowToReadOpen, setIsHowToReadOpen] = useState<boolean>(false);
   const [isSheetViewerOpen, setIsSheetViewerOpen] = useState<boolean>(false);
-  const [isFoodCostOpen, setIsFoodCostOpen] = useState<boolean>(false);
   const [isMacroEstimatorOpen, setIsMacroEstimatorOpen] = useState<boolean>(false);
   const [customizingItem, setCustomizingItem] = useState<MenuItem | null>(null);
   const [activeSheetIndex, setActiveSheetIndex] = useState<number>(0);
@@ -271,7 +269,6 @@ export default function App() {
           setActiveSheetIndex(0);
           setIsSheetViewerOpen(true);
         }}
-        onOpenFoodCost={() => setIsFoodCostOpen(true)}
         onOpenMacroEstimator={() => setIsMacroEstimatorOpen(true)}
         lang={lang}
         onToggleLang={toggleLanguage}
@@ -291,7 +288,6 @@ export default function App() {
             setActiveSheetIndex(0);
             setIsSheetViewerOpen(true);
           }}
-          onOpenFoodCost={() => setIsFoodCostOpen(true)}
           onOpenMacroEstimator={() => setIsMacroEstimatorOpen(true)}
         />
 
@@ -321,14 +317,6 @@ export default function App() {
               >
                 <Target className="w-4 h-4 text-[#d4af37]" />
                 <span>{lang === 'en' ? 'Macro Calculator' : 'حاسبة الماكروز الشخصية'}</span>
-              </button>
-
-              <button
-                onClick={() => setIsFoodCostOpen(true)}
-                className="px-3.5 py-2 text-xs font-bold text-white bg-[#183325] hover:bg-[#1e3f2e] border border-emerald-500/40 rounded-lg flex items-center gap-1.5 transition-colors cursor-pointer"
-              >
-                <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-                <span>{lang === 'en' ? 'Cost & Pricing Engine' : 'حاسبة التكاليف وهوامش الربح'}</span>
               </button>
 
               <button
@@ -504,13 +492,6 @@ export default function App() {
       <HowToReadModal
         isOpen={isHowToReadOpen}
         onClose={() => setIsHowToReadOpen(false)}
-        lang={lang}
-      />
-
-      {/* Food Cost & Pricing Simulator Modal */}
-      <FoodCostModal
-        isOpen={isFoodCostOpen}
-        onClose={() => setIsFoodCostOpen(false)}
         lang={lang}
       />
 

@@ -7,7 +7,6 @@ import {
   Scale, 
   Clock, 
   MapPin, 
-  Calculator, 
   Phone, 
   MessageCircle, 
   Briefcase,
@@ -21,7 +20,6 @@ interface HeroBannerProps {
   onSelectGoal: (goal: DietGoal) => void;
   onOpenHowToRead: () => void;
   onOpenSheetViewer: () => void;
-  onOpenFoodCost?: () => void;
   onOpenMacroEstimator?: () => void;
 }
 
@@ -31,7 +29,6 @@ export const HeroBanner: React.FC<HeroBannerProps> = ({
   onSelectGoal,
   onOpenHowToRead,
   onOpenSheetViewer,
-  onOpenFoodCost,
   onOpenMacroEstimator,
 }) => {
   const whatsappNumber = '213558327813';
@@ -149,17 +146,6 @@ export const HeroBanner: React.FC<HeroBannerProps> = ({
                 <Phone className="w-3.5 h-3.5 text-amber-400" />
                 <span className="font-mono text-xs text-amber-300">0558 32 78 13</span>
               </a>
-
-              {/* Costing Engine */}
-              {onOpenFoodCost && (
-                <button
-                  onClick={onOpenFoodCost}
-                  className="inline-flex items-center gap-1.5 px-3 py-2.5 text-xs sm:text-sm font-semibold text-[#88c999] bg-[#102319] hover:bg-[#183325] border border-[#88c999]/30 rounded-lg transition-colors cursor-pointer"
-                >
-                  <Calculator className="w-3.5 h-3.5 text-[#88c999]" />
-                  <span className="hidden sm:inline">{lang === 'en' ? 'Costing' : 'التكاليف'}</span>
-                </button>
-              )}
 
               {/* How to Read Macros */}
               <button
